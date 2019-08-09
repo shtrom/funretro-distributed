@@ -69,6 +69,8 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
+    set -x
+
     apt-get update
     apt-get install -y curl
 
@@ -78,11 +80,17 @@ Vagrant.configure("2") do |config|
     curl -sL https://npmjs.org/install.sh | sh
     npm install npm@latest -g
 
-    cd /vagrant
+    mkdir -p /opt/funretro
+    rsync -rP /vagrant/ /opt/funretro/
+    cd /opt/funretro
+
+    adduser --system funretro
+    chown -R funretro .
 
     apt-get install -y git build-essential
     rm package-lock.json  # https://github.com/npm/npm/issues/13528
-    npm install
+
+    sudo -u funretro npm install
 
     npm install gulp -g
 

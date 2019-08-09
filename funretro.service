@@ -2,7 +2,8 @@
 Description=FunRetro
 
 [Service]
-WorkingDirectory=/vagrant
+User=funretro
+WorkingDirectory=/opt/funretro
 ExecStart=/usr/bin/gulp
 
 [Install]
