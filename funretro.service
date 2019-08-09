@@ -1,0 +1,9 @@
+[Unit]
+Description=FunRetro
+
+[Service]
+WorkingDirectory=/vagrant
+ExecStart=/usr/bin/gulp
+
+[Install]
+WantedBy=multi-user.target

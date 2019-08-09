@@ -84,6 +84,10 @@ Vagrant.configure("2") do |config|
     npm install
 
     npm install gulp -g
-    gulp
+
+    cp funretro.service /etc/systemd/system
+    systemctl daemon-reload
+    systemctl enable funretro
+    systemctl start funretro
   SHELL
 end
